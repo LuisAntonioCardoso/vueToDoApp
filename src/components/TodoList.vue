@@ -19,9 +19,7 @@
       class="margin-bottom: 0.75rem;"
     >
       <div class="todo-item">
-        <div class="todo-label">
-          <span class="text-decoration: line-through;">{{ todo.title }}</span>
-        </div>
+        <span class="text-decoration: line-through;">{{ todo.title }}</span>
         <button class="delete-button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,16 +52,17 @@ const store = useTaskStore();
 
 <style>
 .container {
-  background-color: #fff;
+  background-color: #7f7e7e;
   padding: 1.5rem;
+  border: 2px solid #878787;
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 20rem;
+  max-width: 700px;
   margin: 0 auto;
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1rem;
   text-align: center;
@@ -84,7 +83,7 @@ const store = useTaskStore();
   margin-right: 0.5rem;
 }
 
-.button {
+.todo-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -93,9 +92,9 @@ const store = useTaskStore();
   font-weight: 500;
   transition: background-color 0.2s ease-out;
   cursor: pointer;
-  height: 3rem;
-  background-color: #48bb78;
-  color: #fff;
+  height: 2rem;
+  background-color: #399b62;
+  color: #d5cccc;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   border: none;
@@ -105,24 +104,31 @@ const store = useTaskStore();
   user-select: none;
 }
 
-.button:hover {
-  background-color: #38a169;
+.todo-button:hover {
+  background-color: #45c27f;
 }
 
-.button:disabled {
+.todo-button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
 
 .todo-item {
+  color: #ddd;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease-out;
+  margin-top: 10px;
+  background: #565555;
 }
 
-.todo-label {
-  display: flex;
-  align-items: center;
+.todo-item:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .delete-button {
@@ -135,8 +141,8 @@ const store = useTaskStore();
   transition: background-color 0.2s ease-out;
   cursor: pointer;
   height: 3rem;
-  background-color: #f44336;
-  color: #fff;
+  background-color: #a9281e;
+  color: #2a2828;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   border: none;
