@@ -1,9 +1,9 @@
 <script setup>
-import TodoList from "./components/TodoList.vue";
+import TodoList from "@/components/TodoList.vue";
 </script>
 
 <template>
-  <div id="app">
+  <div>
     <TodoList />
   </div>
 </template>
@@ -15,9 +15,4 @@ export default {
 };
 </script>
 
-<style scoped>
-body {
-  margin: 0;
-  background-color: #eee;
-}
-</style>
+<style scoped></style>
