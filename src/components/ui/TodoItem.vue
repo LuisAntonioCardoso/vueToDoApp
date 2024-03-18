@@ -9,7 +9,22 @@
       "
     >
       <div v-if="editing">
-        <span>{{ props.todo.title }}</span>
+        <div>
+          <input
+            placeholder="Task title"
+            v-model="newTodoTitle"
+            @keyup.enter.prevent="submit"
+            class="title-input"
+            type="text"
+          />
+          <input
+            placeholder="task description"
+            v-model="newTodoDescription"
+            @keyup.enter.prevent="submit"
+            class="description-input"
+            type="text"
+          />
+        </div>
       </div>
       <div v-else>
         <span class="title">{{ props.todo.title }}</span>
@@ -25,7 +40,7 @@
         <div v-else>
           <EditButton @click.stop="editClick" />
           <DeleteButton @click.stop="deleteClick" />
-          <StarButton @click.stop="starClick" />
+          <StarButton @click.stop="starClick" :toggled="stared" />
         </div>
       </div>
     </div>
@@ -46,6 +61,9 @@ const store = useTaskStore();
 const props = defineProps(["todo"]);
 const deleted = ref(false);
 const editing = ref(false);
+const newTodoTitle = ref("");
+const newTodoDescription = ref("");
+const stared = ref(store.staredIds.includes(props.todo.id));
 
 const taskClick = (element, todo) => {
   if (element.className == "") element = element.parentElement;
@@ -73,7 +91,11 @@ const editClick = () => {
 const confirmClick = () => {
   editing.value = !editing.value;
 };
-const starClick = () => {};
+
+const starClick = () => {
+  store.toggleStar(props.todo.id);
+  stared.value = !stared.value;
+};
 </script>
 
 <style>
