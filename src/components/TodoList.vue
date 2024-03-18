@@ -2,16 +2,23 @@
   <div class="container">
     <h1 class="title">TODO List</h1>
     <form class="todo-form">
-      <input
-        placeholder="example of a task"
-        v-model="store.newItem"
-        @keyup.enter.prevent="store.addItem"
-        class="todo-input"
-        type="text"
-      />
-      <button @click.prevent="store.addItem" class="todo-button">
-        Add Task
-      </button>
+      <div class="">
+        <input
+          placeholder="Task title"
+          v-model="newTodoTitle"
+          @keyup.enter.prevent="submit"
+          class="todo-input"
+          type="text"
+        />
+        <input
+          placeholder="task description"
+          v-model="newTodoDescription"
+          @keyup.enter.prevent="submit"
+          class="todo-input"
+          type="text"
+        />
+      </div>
+      <button @click.prevent="submit" class="todo-button">Add Task</button>
     </form>
     <div
       v-for="todo in store.items"
@@ -24,9 +31,19 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useTaskStore } from "@/stores/taskStore";
 import TodoItem from "@/components/ui/TodoItem.vue";
 const store = useTaskStore();
+
+let newTodoTitle = ref("");
+let newTodoDescription = ref("");
+
+const submit = () => {
+  store.addItem(newTodoTitle.value, newTodoDescription.value);
+  newTodoTitle.value = "";
+  newTodoDescription.value = "";
+};
 </script>
 
 <style>
