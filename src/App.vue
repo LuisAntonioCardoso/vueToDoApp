@@ -1,9 +1,11 @@
 <script setup>
-import TodoList from "@/components/TodoList.vue";
+import TodoList from "@/components/TodoApp.vue";
+import CatsThing from "@/components/CatsThing.vue";
 </script>
 
 <template>
   <TodoList />
+  <CatsThing />
 </template>
 
-<style scoped></style>
+<style></style>

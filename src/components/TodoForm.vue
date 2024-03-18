@@ -16,7 +16,7 @@
         type="text"
       />
     </div>
-    <ConfirmButton @click.prevent="submit" class="todo-button" />
+    <ConfirmButton @click.prevent="submit" />
   </form>
 </template>
 
