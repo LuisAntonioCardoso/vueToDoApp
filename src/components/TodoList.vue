@@ -1,25 +1,8 @@
 <template>
   <div class="container">
     <h1 class="title">TODO List</h1>
-    <form class="todo-form">
-      <div class="">
-        <input
-          placeholder="Task title"
-          v-model="newTodoTitle"
-          @keyup.enter.prevent="submit"
-          class="todo-input"
-          type="text"
-        />
-        <input
-          placeholder="task description"
-          v-model="newTodoDescription"
-          @keyup.enter.prevent="submit"
-          class="todo-input"
-          type="text"
-        />
-      </div>
-      <button @click.prevent="submit" class="todo-button">Add Task</button>
-    </form>
+    <TodoForm />
+
     <div
       v-for="todo in store.items"
       :key="todo.id"
@@ -31,19 +14,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { useTaskStore } from "@/stores/taskStore";
 import TodoItem from "@/components/ui/TodoItem.vue";
+import TodoForm from "@/components/TodoForm.vue";
 const store = useTaskStore();
-
-let newTodoTitle = ref("");
-let newTodoDescription = ref("");
-
-const submit = () => {
-  store.addItem(newTodoTitle.value, newTodoDescription.value);
-  newTodoTitle.value = "";
-  newTodoDescription.value = "";
-};
 </script>
 
 <style>
@@ -62,45 +36,5 @@ const submit = () => {
   font-weight: bold;
   margin-bottom: 1rem;
   text-align: center;
-}
-
-.todo-form {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.todo-input {
-  border: 2px solid #ddd;
-  border-radius: 4px;
-  padding: 0.5rem;
-  flex-grow: 1;
-  margin-right: 0.5rem;
-}
-
-.todo-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease-out;
-  cursor: pointer;
-  height: 2rem;
-  background-color: #399b62;
-  color: #d5cccc;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  border: none;
-  margin: 0;
-  outline: none;
-  box-shadow: none;
-  user-select: none;
-}
-
-.todo-button:hover {
-  background-color: #45c27f;
 }
 </style>
