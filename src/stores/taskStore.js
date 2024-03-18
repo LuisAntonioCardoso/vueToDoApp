@@ -4,6 +4,7 @@ export const useTaskStore = defineStore({
   id: "taskList",
   state: () => ({
     nextId: 6,
+    staredIds: [2, 4],
     items: [
       {
         id: 1,
@@ -57,6 +58,11 @@ export const useTaskStore = defineStore({
           this.items[i].title = description;
         }
       }
+    },
+    toggleStar(id) {
+      if (this.staredIds.includes(id))
+        this.staredIds = this.staredIds.filter((itemId) => itemId !== id);
+      else this.staredIds.push(id);
     },
     nextItemStep(id) {
       for (let i = 0; i < this.items.length; i++) {
