@@ -6,11 +6,17 @@
       <TodoItem :todo="todo" />
     </div>
   </div>
+  <div class="container">
+    <h1 class="title">Stared Tasks</h1>
+    <div v-for="todo in store.items" :key="todo.id">
+      <TodoItem v-if="store.staredIds.includes(todo.id)" :todo="todo" />
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { useTaskStore } from "@/stores/taskStore";
-import TodoItem from "@/components/ui/TodoItem.vue";
+import TodoItem from "@/components/TodoItem.vue";
 import TodoForm from "@/components/TodoForm.vue";
 const store = useTaskStore();
 </script>
@@ -23,7 +29,7 @@ const store = useTaskStore();
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 700px;
-  margin: 0 auto;
+  margin: 1rem auto;
 }
 
 .title {
