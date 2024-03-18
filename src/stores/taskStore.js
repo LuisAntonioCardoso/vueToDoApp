@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 export const useTaskStore = defineStore({
   id: "taskList",
   state: () => ({
-    newItem: "",
+    nextId: 6,
     items: [
       {
         id: 1,
@@ -38,16 +38,15 @@ export const useTaskStore = defineStore({
     ],
   }),
   actions: {
-    addItem() {
-      if (this.newItem.trim().length === 0) return;
+    addItem(title, description) {
+      if (title.trim().length === 0) return;
 
       this.items.push({
-        id: this.items.length + 1,
-        title: this.newItem,
+        id: this.nextId++,
+        title: title,
+        description: description,
         state: "to do",
       });
-
-      this.newItem = "";
     },
     editItem(id, title, description) {
       for (let i = 0; i < this.items.length; i++) {
