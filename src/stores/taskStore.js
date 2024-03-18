@@ -40,6 +40,7 @@ export const useTaskStore = defineStore({
   actions: {
     addItem(title, description) {
       if (title.trim().length === 0) return;
+      if (description.trim().length === 0) return;
 
       this.items.push({
         id: this.nextId++,
@@ -47,6 +48,7 @@ export const useTaskStore = defineStore({
         description: description,
         state: "to do",
       });
+      return true;
     },
     editItem(id, title, description) {
       for (let i = 0; i < this.items.length; i++) {
