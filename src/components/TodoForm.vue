@@ -30,9 +30,12 @@ let newTodoTitle = ref("");
 let newTodoDescription = ref("");
 
 const submit = () => {
-  store.addItem(newTodoTitle.value, newTodoDescription.value);
-  newTodoTitle.value = "";
-  newTodoDescription.value = "";
+  if (!store.addItem(newTodoTitle.value, newTodoDescription.value))
+    alert("please fill both the title and the description");
+  else {
+    newTodoTitle.value = "";
+    newTodoDescription.value = "";
+  }
 };
 </script>
 
