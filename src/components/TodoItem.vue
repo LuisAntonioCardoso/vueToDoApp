@@ -35,7 +35,7 @@
         <div v-if="editing">
           <ConfirmButton @click.stop="confirmClick" />
           <DeleteButton @click.stop="deleteClick" />
-          <StarButton @click.stop="starClick" />
+          <StarButton @click.stop="starClick" :toggled="stared" />
         </div>
         <div v-else>
           <EditButton @click.stop="editClick" />
@@ -61,11 +61,12 @@ const store = useTaskStore();
 const props = defineProps(["todo"]);
 const deleted = ref(false);
 const editing = ref(false);
-const newTodoTitle = ref("");
-const newTodoDescription = ref("");
+const newTodoTitle = ref(props.todo.title);
+const newTodoDescription = ref(props.todo.description);
 const stared = ref(store.staredIds.includes(props.todo.id));
 
 const taskClick = (element, todo) => {
+  if (editing.value) return;
   if (element.className == "") element = element.parentElement;
 
   if (todo.state == "to do") {
@@ -84,12 +85,22 @@ const deleteClick = () => {
   deleted.value = true;
 };
 
+let oldTitle, oldDescription;
 const editClick = () => {
   editing.value = !editing.value;
+  oldTitle = props.todo.title;
+  oldDescription = props.todo.description;
 };
 
 const confirmClick = () => {
   editing.value = !editing.value;
+  if (
+    oldTitle == newTodoTitle.value &&
+    oldDescription == newTodoDescription.value
+  )
+    return;
+
+  store.editItem(props.todo.id, newTodoTitle.value, newTodoDescription.value);
 };
 
 const starClick = () => {
