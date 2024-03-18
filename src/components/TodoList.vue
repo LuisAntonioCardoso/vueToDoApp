@@ -2,12 +2,7 @@
   <div class="container">
     <h1 class="title">TODO List</h1>
     <TodoForm />
-
-    <div
-      v-for="todo in store.items"
-      :key="todo.id"
-      class="margin-bottom: 0.75rem;"
-    >
+    <div v-for="todo in store.items" :key="todo.id">
       <TodoItem :todo="todo" />
     </div>
   </div>
