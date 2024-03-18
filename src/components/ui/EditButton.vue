@@ -39,6 +39,8 @@
   outline: none;
   box-shadow: none;
   user-select: none;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .edit-button:hover {

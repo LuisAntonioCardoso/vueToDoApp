@@ -1,5 +1,5 @@
 <template>
-  <button class="delete-button">
+  <button class="confirm-button">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -38,10 +38,12 @@
   outline: none;
   box-shadow: none;
   user-select: none;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .confirm-button:hover {
-  background-color: #e53935;
+  background-color: #45c27f;
   color: white;
 }
 </style>
