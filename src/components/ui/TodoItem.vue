@@ -20,10 +20,12 @@
         <div v-if="editing">
           <ConfirmButton @click.stop="confirmClick" />
           <DeleteButton @click.stop="deleteClick" />
+          <StarButton @click.stop="starClick" />
         </div>
         <div v-else>
           <EditButton @click.stop="editClick" />
           <DeleteButton @click.stop="deleteClick" />
+          <StarButton @click.stop="starClick" />
         </div>
       </div>
     </div>
@@ -36,6 +38,7 @@ import { ref } from "vue";
 import DeleteButton from "@/components/ui/DeleteButton.vue";
 import EditButton from "@/components/ui/EditButton.vue";
 import ConfirmButton from "@/components/ui/ConfirmButton.vue";
+import StarButton from "@/components/ui/StarButton.vue";
 
 import { useTaskStore } from "@/stores/taskStore";
 const store = useTaskStore();
@@ -70,6 +73,7 @@ const editClick = () => {
 const confirmClick = () => {
   editing.value = !editing.value;
 };
+const starClick = () => {};
 </script>
 
 <style>
