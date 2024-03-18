@@ -5,11 +5,36 @@ export const useTaskStore = defineStore({
   state: () => ({
     newItem: "",
     items: [
-      { id: 1, title: "task1", state: "to do" },
-      { id: 2, title: "task2", state: "to do" },
-      { id: 3, title: "task3", state: "to do" },
-      { id: 4, title: "task4", state: "to do" },
-      { id: 5, title: "task5", state: "to do" },
+      {
+        id: 1,
+        title: "task1",
+        description: "ths is one task!",
+        state: "to do",
+      },
+      {
+        id: 2,
+        title: "task2",
+        description: "this is the second",
+        state: "to do",
+      },
+      {
+        id: 3,
+        title: "task3",
+        description: "this is another one",
+        state: "to do",
+      },
+      {
+        id: 4,
+        title: "task4",
+        description: "and then again, one more",
+        state: "to do",
+      },
+      {
+        id: 5,
+        title: "task5",
+        description: "last one, i swear",
+        state: "to do",
+      },
     ],
   }),
   actions: {
@@ -24,9 +49,15 @@ export const useTaskStore = defineStore({
 
       this.newItem = "";
     },
+    editItem(id, title, description) {
+      for (let i = 0; i < this.items.length; i++) {
+        if (this.items[i].id === id) {
+          this.items[i].title = title;
+          this.items[i].title = description;
+        }
+      }
+    },
     nextItemStep(id) {
-      console.log(id);
-
       for (let i = 0; i < this.items.length; i++) {
         if (this.items[i].id === id) {
           switch (this.items[i].state) {
