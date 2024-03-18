@@ -5,8 +5,11 @@ export const useTaskStore = defineStore({
   state: () => ({
     newItem: "",
     items: [
-      { id: 1, title: "task", state: "to do" },
-      { id: 2, title: "task", state: false },
+      { id: 1, title: "task1", state: "to do" },
+      { id: 2, title: "task2", state: "to do" },
+      { id: 3, title: "task3", state: "to do" },
+      { id: 4, title: "task4", state: "to do" },
+      { id: 5, title: "task5", state: "to do" },
     ],
   }),
   actions: {
@@ -22,6 +25,8 @@ export const useTaskStore = defineStore({
       this.newItem = "";
     },
     nextItemStep(id) {
+      console.log(id);
+
       for (let i = 0; i < this.items.length; i++) {
         if (this.items[i].id === id) {
           switch (this.items[i].state) {
@@ -29,7 +34,7 @@ export const useTaskStore = defineStore({
               this.items[i].state = "on going";
               break;
             case "on going":
-              this.items[i].state = "finish";
+              this.items[i].state = "finished";
               break;
             default:
           }
@@ -38,12 +43,7 @@ export const useTaskStore = defineStore({
       }
     },
     removeItem(id) {
-      for (let i = 0; i < this.items.length; i++) {
-        if (this.items[i].id === id) {
-          this.items[i] = false;
-          break;
-        }
-      }
+      this.items = this.items.filter((item) => item.id !== id);
     },
   },
 });

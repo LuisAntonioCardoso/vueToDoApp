@@ -6,11 +6,4 @@ import TodoList from "@/components/TodoList.vue";
   <TodoList />
 </template>
 
-<script>
-export default {
-  name: "App",
-  components: TodoList,
-};
-</script>
-
 <style scoped></style>
