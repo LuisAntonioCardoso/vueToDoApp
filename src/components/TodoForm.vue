@@ -1,6 +1,6 @@
 <template>
   <form class="todo-form">
-    <div class="">
+    <div>
       <input
         placeholder="Task title"
         v-model="newTodoTitle"

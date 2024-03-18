@@ -52,10 +52,11 @@ export const useTaskStore = defineStore({
       return true;
     },
     editItem(id, title, description) {
+      console.log(id, title, description);
       for (let i = 0; i < this.items.length; i++) {
         if (this.items[i].id === id) {
           this.items[i].title = title;
-          this.items[i].title = description;
+          this.items[i].description = description;
         }
       }
     },
@@ -82,6 +83,7 @@ export const useTaskStore = defineStore({
     },
     removeItem(id) {
       this.items = this.items.filter((item) => item.id !== id);
+      this.staredIds = this.staredIds.filter((itemId) => itemId !== id);
     },
   },
 });
