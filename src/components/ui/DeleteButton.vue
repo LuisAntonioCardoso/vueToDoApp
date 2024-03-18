@@ -10,7 +10,6 @@
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="text-white"
     >
       <path d="M3 6h18"></path>
       <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
@@ -37,7 +36,7 @@
   color: #2a2828;
   border-radius: 4px;
   border: none;
-  margin: 0;
+  margin-left: 0.5rem;
   outline: none;
   box-shadow: none;
   user-select: none;
@@ -45,10 +44,6 @@
 
 .delete-button:hover {
   background-color: #e53935;
-}
-
-.delete-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
+  color: white;
 }
 </style>
