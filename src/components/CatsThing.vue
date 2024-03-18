@@ -25,18 +25,30 @@
 import { ref } from "vue";
 import axios from "axios";
 
+import { useTaskStore } from "@/stores/taskStore";
+const store = useTaskStore();
 import ConfirmButton from "@/components/ui/ConfirmButton.vue";
 
 const factNumber = ref(0);
 const facts = ref([]);
 
+const cacheBuster = (url) => `${url}?cb=${Date.now()}`;
+
 const submit = async () => {
+  facts.value = [];
   let incomingData = [];
-  await axios
-    .get("https://cat-fact.herokuapp.com/facts")
-    .then((data) => (incomingData = data.data));
-  for (let i = 0; i < incomingData.length; i++) {
-    facts.value.push(incomingData[i].text);
+  while (factNumber.value > 0) {
+    await axios
+      .get(cacheBuster("https://cat-fact.herokuapp.com/facts?"))
+      .then((data) => (incomingData = data.data));
+    for (let i = 0; i < incomingData.length && i < factNumber.value; i++) {
+      facts.value.push(incomingData[i].text);
+    }
+    factNumber.value -= incomingData.length;
+  }
+
+  for (let i = 0; i < facts.value.length; i++) {
+    store.addItem("it is a fact", facts.value[i]);
   }
   factNumber.value = 0;
 };
