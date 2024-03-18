@@ -8,17 +8,22 @@
         }
       "
     >
-      <div v-if="editing"></div>
-      <div v-else>
+      <div v-if="editing">
         <span>{{ props.todo.title }}</span>
+      </div>
+      <div v-else>
+        <span class="title">{{ props.todo.title }}</span>
+        <br />
+        <span class="description">{{ props.todo.description }}</span>
       </div>
       <div>
         <div v-if="editing">
-          <DeleteButton @click.stop="close" />
+          <ConfirmButton @click.stop="confirmClick" />
+          <DeleteButton @click.stop="deleteClick" />
         </div>
         <div v-else>
-          <EditButton @click.stop="close" />
-          <DeleteButton @click.stop="close" />
+          <EditButton @click.stop="editClick" />
+          <DeleteButton @click.stop="deleteClick" />
         </div>
       </div>
     </div>
@@ -30,6 +35,7 @@ import { ref } from "vue";
 
 import DeleteButton from "@/components/ui/DeleteButton.vue";
 import EditButton from "@/components/ui/EditButton.vue";
+import ConfirmButton from "@/components/ui/ConfirmButton.vue";
 
 import { useTaskStore } from "@/stores/taskStore";
 const store = useTaskStore();
@@ -52,16 +58,22 @@ const taskClick = (element, todo) => {
   }
 };
 
-const close = () => {
+const deleteClick = () => {
   store.removeItem(props.todo.id);
   deleted.value = true;
+};
+
+const editClick = () => {
+  editing.value = !editing.value;
+};
+
+const confirmClick = () => {
+  editing.value = !editing.value;
 };
 </script>
 
 <style>
 .todo-item {
-  font-size: 24px;
-  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -71,6 +83,16 @@ const close = () => {
   transition: box-shadow 0.2s ease-out;
   margin-top: 10px;
   background: #565555;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 15px;
+  color: white;
 }
 
 .todo-item:hover {
@@ -91,6 +113,12 @@ const close = () => {
 .finished-item {
   color: #16e81a;
   border-color: #16e81a;
+}
+
+.finished-item .title {
+  text-decoration-line: line-through;
+}
+.finished-item .description {
   text-decoration-line: line-through;
 }
 </style>

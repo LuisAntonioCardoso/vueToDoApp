@@ -86,9 +86,4 @@ const store = useTaskStore();
 .todo-button:hover {
   background-color: #45c27f;
 }
-
-.todo-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
 </style>
