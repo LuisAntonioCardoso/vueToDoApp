@@ -26,8 +26,8 @@ import { useTaskStore } from "@/stores/taskStore";
 import ConfirmButton from "@/components/ui/ConfirmButton.vue";
 const store = useTaskStore();
 
-let newTodoTitle = ref("");
-let newTodoDescription = ref("");
+const newTodoTitle = ref("");
+const newTodoDescription = ref("");
 
 const submit = () => {
   if (!store.addItem(newTodoTitle.value, newTodoDescription.value))
