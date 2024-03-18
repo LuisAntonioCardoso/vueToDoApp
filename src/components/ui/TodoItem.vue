@@ -8,8 +8,19 @@
         }
       "
     >
-      <span>{{ props.todo.title }}</span>
-      <DeleteButton @click.stop="close" />
+      <div v-if="editing"></div>
+      <div v-else>
+        <span>{{ props.todo.title }}</span>
+      </div>
+      <div>
+        <div v-if="editing">
+          <DeleteButton @click.stop="close" />
+        </div>
+        <div v-else>
+          <EditButton @click.stop="close" />
+          <DeleteButton @click.stop="close" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -18,12 +29,14 @@
 import { ref } from "vue";
 
 import DeleteButton from "@/components/ui/DeleteButton.vue";
+import EditButton from "@/components/ui/EditButton.vue";
 
 import { useTaskStore } from "@/stores/taskStore";
 const store = useTaskStore();
 
 const props = defineProps(["todo"]);
 const deleted = ref(false);
+const editing = ref(false);
 
 const taskClick = (element, todo) => {
   if (element.className == "") element = element.parentElement;
