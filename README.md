@@ -1,29 +1,38 @@
 # vueToDoApp
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Simple TODO app built with Vue 3 in Vite, using Pinia as State Manager.
 
 ## Project Setup
 
+To run the project download the code from https://github.com/LuisAntonioCardoso/vueToDoApp.git
+
+### To install the project dependencies go to the code folder and run que following command:
+```sh
+bun install
+```
+or
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
 
+
+### To get the project built and ready for production:
 ```sh
-npm run dev
+bun run build
 ```
-
-### Compile and Minify for Production
-
+or
 ```sh
 npm run build
+```
+
+
+
+### To compile and run in developer environment with hot-reload:
+```sh
+bun run dev
+```
+or
+```sh
+npm run dev
 ```
